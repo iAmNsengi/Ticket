@@ -1,0 +1,73 @@
+<main class="container mt-3 container-xxl bg-light p-4 ">
+    <div >
+        <div class="jumbotron">
+            <h2 class="h3 text-center">Buy Ticket</h2>
+            <hr>
+            <form  method="post">
+              {%include 'messages.html'%}
+              {%csrf_token%}
+              <p>Choose your Agency:</p>
+              <select name="agency" id="" class="form-control">
+                <option value="RITCO">RITCO</option>
+                <option value="VIRUNGA">VIRUNGA</option>
+                <option value="KIGALI COACH">KIGALI COACH</option>
+
+              </select>
+              <br>
+                <p>Date: <input class="form-control" type="date" name="date" id="date"></p>
+                <script>
+                  document.getElementById("date").valueAsDate = new Date();
+                 </script>
+                 <p>From: <select class="form-control" name="from" id="from" onchange="Calculate(this)">
+                  <option value="kigali">KIGALI</option>
+                  <option value="musanze">MUSANZE</option>
+                  <option value="gisenyi">GISENYI</option>
+              </select></p>
+              <p>To: <select class="form-control" name="to" id="to" onchange="Calculate(this)">
+                <option value="gisenyi">GISENYI</option>
+                <option value="musanze">MUSANZE</option>
+                <option value="kigali">KIGALI</option>
+            </select></p>
+                <p>Depart Time : <select class="form-control" name="time" id="">
+                    <option value="1">05:00</option>
+                    <option value="1">05:30</option>
+                    <option value="1">06:00</option>
+                    <option value="1">06:30</option>
+                    <option value="1">07:00</option>
+                    <option value="1">07:30</option>
+                    <option value="1">08:00</option>
+                    <option value="1">08:30</option>
+                    <option value="1">09:00</option>
+                    <option value="1">09:30</option>
+                    <option value="1">10:00</option>
+                    <option value="1">10:30</option>
+                    <option value="1">11:00</option>
+                    <option value="1">11:30</option>
+                    <option value="1">12:00</option>
+                    <option value="1">12:30</option>
+                    <option value="1">13:00</option>
+                    <option value="1">13:30</option>
+                    <option value="1">14:00</option>
+                    <option value="1">14:30</option>
+                    <option value="1">15:00</option>
+                    <option value="1">15:30</option>
+                    <option value="1">16:00</option>
+                    <option value="1">16:30</option>
+                    <option value="1">17:00</option>
+                    <option value="1">17:30</option>
+                    <option value="1">18:00</option>
+                </select></p>
+                <p>No Of Tickets: <select class="form-control" name="qty" id="qty" onchange="Calculate(this)">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </p>
+                <p>Price: <b id="amount">3,300 </b>Frw</p>
+                <button type="submit" class="btn btn-primary">Buy Ticket</button>
+            </form>
+        </div>
+    </div>
+</main>

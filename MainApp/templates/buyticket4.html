@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+{% include 'components.html'%}
+<div class="container-xxl hero-header">
+  <div class="container px-lg-5 jumbotron ml-3">
+    <div class="row g-5">
+      <div class="col-lg-8 text-center text-lg-start">
+        <div class="container mt-5">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-12">
+              <form id="regForm" method="POST">
+                {%csrf_token%}
+                <h1 id="register">Buy Ticket</h1>
+                {% include 'messages.html'%}
+                <div class="all-steps" id="all-steps">
+                  <span class="step bg-dark"></span> <span class="step bg-dark"></span>
+                  <span class="step bg-dark"></span> <span class="step bg-dark"></span>
+                </div>
+                <div class="tab">
+               <p class="h4 text-center">Billing Details:</p>
+              <hr>
+              <p class="h6">Fullname:</p>
+              <input type="text" class="form-control" value="{{user.fullname}}" readonly>
+              <p class="h6">Phone:</p>
+              <input type="text" class="form-control" value="{{user.phone}}" readonly>
+              <p class="h6">Email:</p>
+              <input type="text" class="form-control" value="{{user.email}}" readonly>
+              <p class="h6">Destination:</p>
+              <input type="text" class="form-control" value="{{destination.From}} - {{destination.To}}" readonly>
+              <p class="h6">Time:</p>
+              <input type="text" class="form-control" value="{{time}}" readonly>
+              <p class="h6">Amount:</p>
+              <input type="text" class="form-control" value="{{destination.price}}&nbsp;Frw" readonly>
+                </div>
+                </div>
+                <div style="overflow: auto">
+                  <div style="float: right">
+                    <button type="submit">
+                      Buy Ticket
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

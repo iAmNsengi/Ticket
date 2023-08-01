@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+{% include 'components.html'%}
+<div class="container-xxl hero-header">
+  <div class="container px-lg-5 jumbotron ml-3">
+    <div class="row g-5">
+      <div class="col-lg-8 text-center text-lg-start">
+        <div class="container mt-5">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-12">
+              <form id="regForm" method="POST">
+                {%csrf_token%}
+                <h1 id="register">Buy Ticket</h1>
+                <div class="all-steps" id="all-steps">
+                  <span class="step bg-dark"></span> <span class="step"></span>
+                  <span class="step"></span> <span class="step"></span>
+                </div>
+                <div class="tab">
+               <p>Choose your Agency:</p>
+              <select name="agency"class="form-control">
+                {% for agency in agencies %}
+                <option value="{{agency.name}}">{{agency.name}}</option>
+                {% endfor %}
+              </select>
+                  
+                </div>
+                
+                </div>
+                <div style="overflow: auto">
+                  <div style="float: right">
+                    <button type="button" id="prevBtn" onclick="">
+                      Previous
+                    </button>
+                    <button type="submit">
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

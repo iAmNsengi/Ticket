@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+{% include 'components.html'%}
+<div class="container-xxl hero-header">
+  <div class="container px-lg-5 jumbotron ml-3">
+    <div class="row g-5">
+      <div class="col-lg-8 text-center text-lg-start">
+        <div class="container mt-5">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-12">
+              <form id="regForm" method="POST">
+                {%csrf_token%}
+                <h1 id="register">Confimation</h1>
+                {% include 'messages.html'%}
+                <div class="tab">
+               <p class="h6">Your Transaction:</p>
+              <input type="text"  class="form-control" value="{{last_transaction.destination.From}}-{{last_transaction.destination.To}} | {{last_transaction.departure_time}} | {{last_transaction.date}}" readonly>
+              <br>
+              <p class="h6 alert alert-info">You are required to pay {{last_transaction.destination.price}} on MoMo Pay then paste in the transaction id after payment or the screenshot of your payment!</p>
+              <br>
+              <p class="h6">Transaction Id: *</p>
+              <input type="text" name="transaction_id" class="form-control" required>
+            <br>
+              <p class="h6">Screenshot of Payment (Optional)</p>
+              <input type="file" name="screenshot"  class="form-control">
+                </div>
+                
+                </div>
+                <div style="overflow: auto">
+                  <div style="float: right">
+                    <button type="submit">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

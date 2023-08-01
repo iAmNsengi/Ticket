@@ -1,0 +1,83 @@
+{% load static %}
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Include the above in your HEAD tag -->
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <center>
+                <div class="middle">
+                    <div id="login">
+
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <fieldset class="clearfix">
+
+                                <p><span class="fa fa-user"></span><input type="text" name="fname"
+                                        Placeholder="First Name" required>
+                                </p> <!-- JS because of IE support; better: placeholder="Username" -->
+                                <p><span class="fa fa-user"></span><input type="text" name="lname"
+                                        Placeholder="Last Name" required>
+                                </p>
+                                <p><span class="fa fa-user"></span><input type="text" name="username"
+                                        Placeholder="Username" required>
+                                </p>
+                                <p><span class="fa fa-phone"></span><input type="text" name="phone"
+                                        Placeholder="Phone Number" required></p>
+                                <p><span class="fa fa-envelope"></span><input type="text" name="email"
+                                        Placeholder="Email" required>
+                                </p>
+
+                                <p><span class="fa fa-lock"></span><input type="text" name="password1"
+                                        Placeholder="Set Password" required></p>
+                                <!-- JS because of IE support; better: placeholder="Username" -->
+                                <p><span class="fa fa-lock"></span><input type="password" name="password2"
+                                        Placeholder="Repeat Password" required></p>
+                                <div>
+                                    <span style="width:48%; text-align:left;  display: inline-block;">
+                                        <a class="small-text btn btn-secondary" href="/login/">Login Instead</a></span>
+                                    <span style="width:50%; text-align:right;  display: inline-block;">
+                                        <input type="submit" value="Sign Up"></span>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                        <div class="clearfix"></div>
+
+                    </div> <!-- end login -->
+                    <div class="logo">
+                        <br>
+                        Ben<span class="text-danger">Transports</span>
+                        <div class="error_box" style="font-size: 12px;height: 20px;">
+                            {%include 'messages.html'%}
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </center>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
