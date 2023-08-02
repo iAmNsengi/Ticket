@@ -1,8 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from datetime import date
 import datetime
 from django.core.mail import send_mail
@@ -114,6 +111,23 @@ def BuyTicketStep3(request):
             try:
                 new_user.save()
                 request.session["user"] = email
+                try:
+                    send_mail(
+                        subject="Message | Makutha-Transport",
+                        message=f"Dear {email} thank you for creating an account at Makutha-Transports.\nYour Password is {passcode}.\n\nMakutha Transport Team,",
+                        from_email=email,
+                        recipient_list=[
+                            settings.EMAIL_HOST_USER,
+                            email,
+                        ],
+                        fail_silently=False,
+                    )
+                except:
+                    messages.error(
+                        request,
+                        "A connection error occurred while sending message retry!.",
+                    )
+                    return redirect("/buy/step4")
                 messages.success(request, "Account Created successfully!")
                 return redirect("/buy/step4")
             except Exception as e:
@@ -260,6 +274,35 @@ def Login(request):
             messages.error(request, e)
             return redirect("/login")
     return render(request, "login.html")
+
+def ForgotPassword(request):
+    if request.method =='POST':
+        email = request.POST.get('email')
+        try:
+            user_exist = UserProfile.objects.get(email=email)
+            try:
+                    send_mail(
+                        subject="Message | Makutha-Transport",
+                        message=f"Dear {email}\nYour Password is {user_exist.passcode}.\n\nMakutha Transport Team,",
+                        from_email=email,
+                        recipient_list=[
+                            settings.EMAIL_HOST_USER,
+                            user_exist.email,
+                        ],
+                        fail_silently=False,
+                    )
+                    messages.success(request, f"Check your passcode on your email {user_exist.email}!")
+                    return redirect("/login")
+            except:
+                messages.error(
+                        request,
+                        "A connection error occurred while sending message retry!.",
+                    )
+                return redirect("/")
+            
+        except:
+                messages.error(request,'User with given email was not found!')
+                return redirect('/login')
 
 
 def Logout(request):
